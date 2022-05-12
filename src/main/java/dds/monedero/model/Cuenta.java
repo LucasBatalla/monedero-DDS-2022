@@ -18,10 +18,6 @@ public class Cuenta {
     saldo = montoInicial;
   }
 
-  public void setMovimientos(List<Movimiento> movimientos) {
-    this.movimientos = movimientos;
-  }
-
   public void depositar(double cantidad) {
     if (cantidad <= 0) {
       throw new MontoNegativoException(cantidad + ": el monto a ingresar debe ser un valor positivo");
