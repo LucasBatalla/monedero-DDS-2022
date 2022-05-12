@@ -11,7 +11,7 @@ import java.util.List;
 
 public class Cuenta {
 
-  private double saldo = 0;
+  private double saldo;
   private List<Movimiento> movimientos = new ArrayList<>();
 
   public Cuenta(double montoInicial) {
@@ -28,6 +28,7 @@ public class Cuenta {
     }
 
     new Movimiento(LocalDate.now(), cantidad, true).agregateA(this);
+    saldo += cantidad;
   }
 
   public void extraer(double cantidad) {
@@ -44,6 +45,7 @@ public class Cuenta {
           + " diarios, límite: " + limite);
     }
     new Movimiento(LocalDate.now(), cantidad, false).agregateA(this);
+    saldo -= cantidad;
   }
 
   public void agregarMovimiento(LocalDate fecha, double cuanto, boolean esDeposito) {

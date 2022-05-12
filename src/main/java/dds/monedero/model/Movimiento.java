@@ -4,9 +4,6 @@ import java.time.LocalDate;
 
 public class Movimiento {
   private LocalDate fecha;
-  // Nota: En ningún lenguaje de programación usen jamás doubles (es decir, números con punto flotante) para modelar dinero en el mundo real.
-  // En su lugar siempre usen numeros de precision arbitraria o punto fijo, como BigDecimal en Java y similares
-  // De todas formas, NO es necesario modificar ésto como parte de este ejercicio. 
   private double monto;
   private boolean esDeposito;
 
@@ -34,7 +31,9 @@ public class Movimiento {
     cuenta.agregarMovimiento(fecha, monto, esDeposito);
   }
 
-  public double calcularValor(Cuenta cuenta) {
+  public double calcularValor(Cuenta cuenta) { // Se que se esta rompiendo el poliformismo, pero si intentaba
+                                              // implementar una interfaz o subclases por tipoDeMovimiento, se agregaba
+                                              // mas complejidad para luego filtrar por tipoDeMovimiento en cuenta
     if (esDeposito) {
       return cuenta.getSaldo() + getMonto();
     } else {
