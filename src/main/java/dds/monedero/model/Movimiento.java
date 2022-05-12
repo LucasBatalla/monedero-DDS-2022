@@ -24,17 +24,10 @@ public class Movimiento {
     return fecha;
   }
 
-  public boolean esDeLaFecha(LocalDate fecha) {
-    return this.fecha.equals(fecha);
-  }
-
   public boolean isDeposito() {
     return esDeposito;
   }
 
-  public boolean isExtraccion() {
-    return !esDeposito;
-  }
 
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
