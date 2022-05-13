@@ -27,10 +27,6 @@ public class Movimiento {
     return tipo.getTipoDeMovimiento();
   }
 
-  public void modificarSaldoCuenta(Cuenta cuenta) {
-    cuenta.setSaldo(calcularValor(cuenta));
-  }
-
   public double calcularValor(Cuenta cuenta) {
     return tipo.calcularValorMovimiento(cuenta, this);
   }
