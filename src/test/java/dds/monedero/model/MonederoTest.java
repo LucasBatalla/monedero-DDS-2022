@@ -35,18 +35,18 @@ public class MonederoTest {
   @Test
   void noEsPosibleRealizarMasDeTresDepositos() {
     assertThrows(MaximaCantidadDepositosException.class, () -> {
-          cuenta.depositar(1500);
-          cuenta.depositar(456);
-          cuenta.depositar(1900);
-          cuenta.depositar(245);
+      cuenta.depositar(1500);
+      cuenta.depositar(456);
+      cuenta.depositar(1900);
+      cuenta.depositar(245);
     });
   }
 
   @Test
   void noEsPosibleExtraerMasDineroQueElSaldoDisponible() {
     assertThrows(SaldoMenorException.class, () -> {
-          cuenta.setSaldo(90);
-          cuenta.extraer(1001);
+      cuenta.setSaldo(90);
+      cuenta.extraer(1001);
     });
   }
 
@@ -54,14 +54,14 @@ public class MonederoTest {
   public void noEsPosibleExtaerMasDineroQueElLimiteDeLaCuenta() {
     assertThrows(MaximoExtraccionDiarioException.class, () -> {
       cuenta.setSaldo(5000);
-      cuenta.sacar(1001);
+      cuenta.extraer(1001);
     });
   }
 
   @Test
   public void noEsPosibleExtraerUnMontoNegativo() {
 
-    assertThrows(MontoNegativoException.class, () -> cuenta.sacar(-500));
+    assertThrows(MontoNegativoException.class, () -> cuenta.extraer(-500));
   }
 
 }

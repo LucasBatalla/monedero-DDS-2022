@@ -5,12 +5,14 @@ import java.time.LocalDate;
 public class Movimiento {
   private LocalDate fecha;
   private double monto;
-  private boolean esDeposito;
+  private TipoMovimiento tipo;
 
-  public Movimiento(LocalDate fecha, double monto, boolean esDeposito) {
+  private TiposDeMovimientos tipoMovimiento;
+
+  public Movimiento(LocalDate fecha, double monto, TipoMovimiento tipo) {
     this.fecha = fecha;
     this.monto = monto;
-    this.esDeposito = esDeposito;
+    this.tipo = tipo;
   }
 
   public double getMonto() {
@@ -21,23 +23,16 @@ public class Movimiento {
     return fecha;
   }
 
-  public boolean isDeposito() {
-    return esDeposito;
+  public TiposDeMovimientos getTipoMovimiento() {
+    return tipo.getTipoDeMovimiento();
   }
-
 
   public void agregateA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
-    cuenta.agregarMovimiento(fecha, monto, esDeposito);
+    cuenta.agregarMovimiento(fecha, monto);
   }
 
-  public double calcularValor(Cuenta cuenta) { // Se que se esta rompiendo el poliformismo, pero si intentaba
-                                              // implementar una interfaz o subclases por tipoDeMovimiento, se agregaba
-                                              // mas complejidad para luego filtrar por tipoDeMovimiento en cuenta
-    if (esDeposito) {
-      return cuenta.getSaldo() + getMonto();
-    } else {
-      return cuenta.getSaldo() - getMonto();
-    }
+  public double calcularValor(Cuenta cuenta) {
+    return tipo.calcularValorMovimiento(cuenta, this);
   }
 }
