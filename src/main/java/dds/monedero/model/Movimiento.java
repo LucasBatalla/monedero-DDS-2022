@@ -27,7 +27,7 @@ public class Movimiento {
     return tipo.getTipoDeMovimiento();
   }
 
-  public void agregateA(Cuenta cuenta) {
+  public void agregarMovimientoA(Cuenta cuenta) {
     cuenta.setSaldo(calcularValor(cuenta));
     cuenta.agregarMovimiento(fecha, monto);
   }
