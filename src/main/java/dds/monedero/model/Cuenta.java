@@ -25,22 +25,20 @@ public class Cuenta {
   public void depositar(double cantidad) {
     validarMonto(cantidad);
     validarLimiteDepositos();
-    Movimiento movimiento = new Movimiento(LocalDate.now(), cantidad, new Deposito())
-    agregarMovimiento(movimiento);
-
+    agregarMovimiento(LocalDate.now(), cantidad, new Deposito());
   }
 
   public void extraer(double cantidad) {
     validarMonto(cantidad);
     validarExtraccion(cantidad);
     validarLimiteExtracciones(cantidad);
-    Movimiento movimiento = new Movimiento(LocalDate.now(), cantidad, new Deposito());
-    agregarMovimiento(movimiento);
+    agregarMovimiento(LocalDate.now(), cantidad, new Extraccion());
   }
 
-  public void agregarMovimiento(Movimiento movimiento) {
+  public void agregarMovimiento(LocalDate fecha, double cantidad, TipoMovimiento tipo) {
+    Movimiento movimiento = new Movimiento(fecha, cantidad, tipo);
     movimientos.add(movimiento);
-    movimiento.modificarSaldoCuenta(this);
+    saldo = movimiento.calcularValor(this);
   }
 
   public double getMontoExtraidoA(LocalDate fecha) {
