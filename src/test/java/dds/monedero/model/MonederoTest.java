@@ -6,6 +6,10 @@ import dds.monedero.exceptions.MontoNegativoException;
 import dds.monedero.exceptions.SaldoMenorException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import sun.util.resources.LocaleData;
+
+import java.time.LocalDate;
+import java.time.Month;
 
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -64,4 +68,9 @@ public class MonederoTest {
     assertThrows(MontoNegativoException.class, () -> cuenta.extraer(-500));
   }
 
+  public LocalDate fechaActual(){
+    return LocalDate.of(2022, Month.MAY, 13);
+
+  }
 }
+
